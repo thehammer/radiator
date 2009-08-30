@@ -1,0 +1,21 @@
+Radiator
+========
+Radiator is a Ruby on Rails application that exposes a web service for radiating information to devices like the Betabrite Prism.
+
+Getting Started
+===============
+0. In order for Radiator to do anything interesting, you'll need a Betabrite Prism USB LED sign.  Plug it in.
+
+1. Before using Radiator for the first time, you'll need to have libusb installed.  Source can be found at http://libusb.sourceforge.net, along with instructions for building it on your platform.  Binary distributions can also be found for certain platforms.  (For Mac OS, see http://www.ellert.se/twain-sane/)
+
+2. With libusb installed, execute 'sudo script/install_usb' from the base directory of the Radiator application.  This will build and install the ruby-usb native library.
+
+3. Launch the service with './radiator' from the base directory of the application.  It will use port 8374 by default.
+
+4. Start radiating.  You can test the service by curling http://localhost:8374/betabrite/radiate/test.
+
+5. Radiator includes a notifier builder_plugin for cruisecontrol.rb.  Just copy app/plugins/radiator_notifier.rb to the builder_plugins/installed directory of your cruisecontrol.rb installation, configure your projects as described in the notifier, and restart cruise.
+
+Device Compatibility
+====================
+This version currently supports the Adaptive Technologies BETABrite Prism USB sign.  In theory it should work with any other Adaptive Technologies USB LED sign that supports the Alpha protocol.

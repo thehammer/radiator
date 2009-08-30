@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+ruby_usb_root = File.dirname(__FILE__) + '/../vendor/ruby-usb/'
+
+`cd #{ruby_usb_root} && ruby extconf.rb && make && sudo make install && make clean && rm Makefile && cd -`

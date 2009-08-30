@@ -1,0 +1,26 @@
+=== 1.0.1
+
+* 1 Minor Enhancement:
+
+  * Works with ruby 1.9
+
+* 1 bugfix:
+
+  * Fixing bug in memory allocation
+
+=== 1.0.0
+
+* 3 Major Enhancements:
+
+  * Adding support for USB betabrite signs (Thanks Thought Hammer)
+  * Added an autotest hook
+  * Changed API to use more DSL type interface
+
+=== 0.0.2
+
+* Added new syntax to BetaBrite::String and BetaBrite::TextFile
+
+=== 0.0.1
+
+* First release
+

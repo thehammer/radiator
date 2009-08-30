@@ -1,0 +1,56 @@
+
+
+Processing BetabriteController#radiate (for 0.0.0.0 at 2008-02-15 21:13:10) [GET]
+  Session ID: 
+  Parameters: {"message"=>:some_message, "node"=>:some_node, "action"=>"radiate", "controller"=>"betabrite", "color"=>:some_color}
+Rendering betabrite/radiate
+Completed in 0.00265 (377 reqs/sec) | Rendering: 0.00081 (30%) | 200 OK [http://test.host/betabrite/radiate/some_message?color=some_color&node=some_node]
+
+
+Processing ContinuousIntegrationController#dim (for 0.0.0.0 at 2008-02-15 21:13:10) [GET]
+  Session ID: 
+  Parameters: {"project"=>"A", "action"=>"dim", "controller"=>"continuous_integration"}
+Rendering continuous_integration/dim
+Completed in 0.00267 (374 reqs/sec) | Rendering: 0.00077 (28%) | 200 OK [http://test.host/continuous_integration/dim/A]
+
+
+Processing ContinuousIntegrationController#radiate (for 0.0.0.0 at 2008-02-15 21:13:10) [GET]
+  Session ID: 
+  Parameters: {"status"=>"status a", "project"=>"project a", "action"=>"radiate", "controller"=>"continuous_integration"}
+Rendering continuous_integration/radiate
+Completed in 0.00089 (1123 reqs/sec) | Rendering: 0.00073 (82%) | 200 OK [http://test.host/continuous_integration/radiate/project%20a/status%20a]
+
+
+Processing ContinuousIntegrationController#radiate (for 0.0.0.0 at 2008-02-15 21:13:10) [GET]
+  Session ID: 
+  Parameters: {"status"=>"status b", "project"=>"project b", "action"=>"radiate", "controller"=>"continuous_integration"}
+Rendering continuous_integration/radiate
+Completed in 0.00056 (1792 reqs/sec) | Rendering: 0.00033 (59%) | 200 OK [http://test.host/continuous_integration/radiate/project%20a/status%20a]
+
+
+Processing ContinuousIntegrationController#radiate (for 0.0.0.0 at 2008-02-15 21:13:10) [GET]
+  Session ID: 
+  Parameters: {"status"=>"some status", "project"=>"some project", "action"=>"radiate", "controller"=>"continuous_integration"}
+Rendering continuous_integration/radiate
+Completed in 0.00047 (2123 reqs/sec) | Rendering: 0.00032 (68%) | 200 OK [http://test.host/continuous_integration/radiate/some%20project/some%20status]
+
+
+Processing ContinuousIntegrationController#radiate (for 0.0.0.0 at 2008-02-15 21:13:10) [GET]
+  Session ID: 
+  Parameters: {"status"=>"3", "project"=>"C", "action"=>"radiate", "controller"=>"continuous_integration"}
+Rendering continuous_integration/radiate
+Completed in 0.00046 (2187 reqs/sec) | Rendering: 0.00031 (68%) | 200 OK [http://test.host/continuous_integration/radiate/C/3]
+
+
+Processing ContinuousIntegrationController#radiate (for 0.0.0.0 at 2008-02-15 21:13:10) [GET]
+  Session ID: 
+  Parameters: {"status"=>"1", "project"=>"A", "action"=>"radiate", "controller"=>"continuous_integration"}
+Rendering continuous_integration/radiate
+Completed in 0.00054 (1864 reqs/sec) | Rendering: 0.00032 (59%) | 200 OK [http://test.host/continuous_integration/radiate/C/3]
+
+
+Processing ContinuousIntegrationController#radiate (for 0.0.0.0 at 2008-02-15 21:13:10) [GET]
+  Session ID: 
+  Parameters: {"status"=>"2", "project"=>"B", "action"=>"radiate", "controller"=>"continuous_integration"}
+Rendering continuous_integration/radiate
+Completed in 0.00073 (1366 reqs/sec) | Rendering: 0.00036 (49%) | 200 OK [http://test.host/continuous_integration/radiate/C/3]
