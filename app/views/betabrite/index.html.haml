@@ -1,1 +1,12 @@
-Index page
+%p
+  Index page
+%div
+  - form_tag "/betabrite/radiate", :method => :get do 
+    = label_tag :node, "Node"
+    = text_field_tag :node, "1"	
+    = label_tag :color, "Color"
+    = text_field_tag :color, '0000FF'
+    = label_tag :message, "Message"
+    = text_field_tag :message
+    = submit_tag "Submit"
+	
