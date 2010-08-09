@@ -9,4 +9,9 @@ class BetabriteController < ApplicationController
 
     BetabriteWriter.display(node, message, color)
   end
+  
+  def index
+    
+  end
+  
 end
