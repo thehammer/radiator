@@ -1,5 +1,5 @@
 Radiator::Application.routes do  
-  resources :betabrite, :co llection => { :radiate => :get }
+  resources :betabrite, :collection => { :radiate => :get }
 
   root :controller => :betabrite   
 end
