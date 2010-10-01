@@ -8,13 +8,21 @@ Getting Started
 
 1. Before using Radiator for the first time, you'll need to have libusb installed.  Source can be found at http://libusb.sourceforge.net, along with instructions for building it on your platform.  Binary distributions can also be found for certain platforms.  (For Mac OS, see http://www.ellert.se/twain-sane/)
 
+WS: On Debian, type "sudo apt-get install libusb"
+
 2. With libusb installed, execute 'sudo script/install_usb' from the base directory of the Radiator application.  This will build and install the ruby-usb native library.
+
+WS: Does not appear to work.  You may need to go and add it manually.
+WS: You will also need to type "rake gems:install" to build all the libraries.  
+WS: If you have a dependency on Nokogiri, you will need "sudo apt-get install libxslt libxml2-dev"
 
 3. Launch the service with './radiator' from the base directory of the application.  It will use port 8374 by default.
 
-4. Start radiating.  You can test the service by curling http://localhost:8374/betabrite/radiate/test.
+4. Start radiating.  You can test the service by going to http://localhost:8374/ and entering text.
 
-5. Radiator includes a notifier builder_plugin for cruisecontrol.rb.  Just copy app/plugins/radiator_notifier.rb to the builder_plugins/installed directory of your cruisecontrol.rb installation, configure your projects as described in the notifier, and restart cruise.
+DISABLED 5. Radiator includes a notifier builder_plugin for cruisecontrol.rb.  Just copy app/plugins/radiator_notifier.rb to the builder_plugins/installed directory of your cruisecontrol.rb installation, configure your projects as described in the notifier, and restart cruise.
+
+WS: Moving this out for a more robust plugin mechanism, based off what Typo does.
 
 Device Compatibility
 ====================

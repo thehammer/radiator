@@ -8,7 +8,7 @@ end
 $LOAD_PATH << File.dirname(__FILE__) + "/../app/betabrite"
 $LOAD_PATH << File.dirname(__FILE__) + "/../app/plugins"
 
-require 'betabrite_configuration' if RAILS_ENV == 'production'
+require File.dirname(__FILE__) + '/betabrite_configuration' if RAILS_ENV == 'production'
 
 Rails::Initializer.run do |config|
   
