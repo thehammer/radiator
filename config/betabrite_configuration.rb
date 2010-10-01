@@ -2,7 +2,7 @@ require 'betabrite'
 require 'usb'
 require 'timeout'
 
-puts "Initializing Betabrite..."
+Rails.logger.debug "Initializing Betabrite..."
 
 # Override usb_interface method to make more compatible with OS X
 module BetaBrite
@@ -54,9 +54,9 @@ end
 Timeout.timeout(10) { bb.write_memory! }
 
 bb = BetaBrite::USB.new do |sign|
-  sign.stringfile('a') do
-    print string("RADIATOR").color_mix
-  end
+  #sign.stringfile('a') do
+  #  print string("RADIATOR").color_mix
+  #end
   
   sign.textfile do
     print stringfile("1")
@@ -77,4 +77,4 @@ bb = BetaBrite::USB.new do |sign|
 end
 Timeout.timeout(10) { bb.write! }
 
-puts "Initialization complete."
+Rails.logger.debug "Initialization complete."
