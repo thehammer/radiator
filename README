@@ -28,7 +28,7 @@ Mac:
 Set up the Database
 ===================
 
-  createdb radiator_production
+  createdb radiator_development
   createuser radiator -P (use "radiator" as the password)
 
 Setup Project
@@ -40,13 +40,24 @@ Setup Project
 Run Migrations
 ===================
 
-  sudo rake db:migrate RAILS_ENV=production
+  sudo rake db:migrate 
 
 Running It
 ====================
 
   sudo ./radiator  (need sudo access for the USB)
-  Go to http://localhost:8374/admin for the Typus interface.
+  Go to http://localhost:3000/admin for the Typus interface.
+
+Extending It
+====================
+
+The core of Radiator is the messages table.  Anything in the messages table gets read according to what has been last displayed, so that the oldest messages get shown first.  
+
+Messages get created by message sources.  Currently, there is only one message source, which queries Toodledo (an online todo service) and creates new messages from it.  However, Radiator does not care where messages come from and you can add your own messages in Typus.
+
+The BetaBriteUpdater class is responsible for talking to the USB display and getting new messages.  This class uses rufus-scheduler to update the display (which is done every 5 seconds) and call the datasources for new messages (every minute).  The BetabriteUpdater will clear the table every time it updates for new messages, but it does not "blank" the Betabrite display.  This means that if there are no new messages, the last displayed message just keeps displaying until a new one does appear.
+
+There is a scaffold for messages that can be used as a REST API, so /messages.xml will give you what you expect.
 
 Device Compatibility
 ====================
