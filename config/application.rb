@@ -1,12 +1,8 @@
 require File.expand_path('../boot', __FILE__)
 
-%w{ ../vendor/betabrite/lib }.each do |path|
-  $LOAD_PATH.unshift(File.expand_path(File.join(File.dirname(__FILE__), path)))
-end
-
-$LOAD_PATH << File.dirname(__FILE__) + "/../lib/betabrite"
-
 require 'rails/all'
+
+#$LOAD_PATH << File.dirname(__FILE__) + "/../lib/betabrite"
 
 require File.dirname(__FILE__) + '/betabrite_configuration' if Rails.env == 'production'
 

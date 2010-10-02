@@ -1,4 +1,6 @@
 require 'rufus/scheduler'
+require 'betabrite/betabrite_writer'
+require 'betabrite/usb_betabrite'
 
 #
 # This class, when called, will show the messages in the queue.
