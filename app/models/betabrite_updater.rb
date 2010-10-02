@@ -8,7 +8,7 @@ require 'betabrite/usb_betabrite'
 class BetabriteUpdater
   
   def self.start_updater
-    Rails.logger.info "start_updater: "
+    Rails.logger.info "start_updater: message = #{message.inspect}"
     
     scheduler = Rufus::Scheduler.start_new
 

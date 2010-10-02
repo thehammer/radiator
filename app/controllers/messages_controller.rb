@@ -80,4 +80,9 @@ class MessagesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  def clear
+    Message.clear_messages
+  end
+  
 end
