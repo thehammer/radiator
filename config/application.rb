@@ -13,6 +13,8 @@ require 'betabrite_configuration' if Rails.env == 'production'
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env) if defined?(Bundler)
 
+MESSAGE_SOURCES = []
+
 module Radiator
   class Application < Rails::Application
       
@@ -20,6 +22,10 @@ module Radiator
     config.encoding = "utf-8"
 
     # Configure sensitive parameters which will be filtered from the log file.
-    config.filter_parameters += [:password]
+    config.filter_parameters += [:password]    
+    
+    config.after_initialize do    
+    end
+    
   end
 end

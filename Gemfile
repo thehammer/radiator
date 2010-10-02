@@ -17,3 +17,4 @@ gem "rufus-scheduler", :git => "git://github.com/jmettraux/rufus-scheduler.git"
 gem 'betabrite', :path => "vendor/betabrite"
 gem 'ruby-usb', :require => 'usb', :path => "vendor/ruby-usb"
 
+gem 'toodledo', '>=1.3.2'
