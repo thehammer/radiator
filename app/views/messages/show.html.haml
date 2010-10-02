@@ -1,0 +1,29 @@
+%p#notice= notice
+
+.message
+  .element
+    ID:
+    = message.id
+  .element
+    Node:
+    = message.node
+  .element
+    Text:
+    = message.text
+  .element
+    Color:
+    = message.color
+  .element
+    Created:
+    = message.created_at.strftime("%D")
+  .element
+    Updated:
+    = message.updated_at.strftime("%D")
+  - last_displayed_at = message.last_displayed_at.strftime("%D") if message.last_displayed_at
+  .element
+    Last Displayed
+    = last_displayed_at || "never"
+
+= link_to 'Edit', edit_message_path(@message)
+|
+\#{link_to 'Back', messages_path}

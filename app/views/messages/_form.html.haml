@@ -1,0 +1,22 @@
+/ This is a test
+.span-20
+  = form_for(@message) do |f|
+    - if @message.errors.any?
+      #error_explanation
+        %h2
+          = pluralize(@message.errors.count, "error")
+          prohibited this message from being saved:
+        %ul
+          - @message.errors.full_messages.each do |msg|
+            %li= msg
+    %fieldset
+      %p
+        = f.label :node
+        = f.text_field(:node)
+      %p
+        = f.label :color
+        = f.text_field(:color, :default => '0000FF')
+      %p
+        = f.label :text
+        = f.text_field(:text)
+      = f.submit

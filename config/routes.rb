@@ -1,5 +1,5 @@
-Radiator::Application.routes do  
-  resources :betabrite, :collection => { :radiate => :get }
+Radiator::Application.routes.draw do  
+  resources :messages
 
-  root :controller => :betabrite   
+  root :to => "messages#index"   
 end

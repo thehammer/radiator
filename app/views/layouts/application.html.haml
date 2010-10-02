@@ -1,0 +1,35 @@
+!!! Strict
+%html{locale_attrs}
+  %head
+    %title Betabrite
+    %meta{"http-equiv"=>"Content-Type", :content=>"text/html; charset=utf-8"}/
+    %meta{ :name => "description", :content => "" }/
+    %meta{ :name => "keywords", :content => "" }/
+    = stylesheet_link_tag 'screen', :media => 'screen, projection'
+    = stylesheet_link_tag 'print', :media => 'print'
+    = stylesheet_link_tag 'buttons', :media => 'screen, projection'
+    /[if lt IE 8]
+      = stylesheet_link_tag 'ie', :media => 'screen, projection'
+    = javascript_include_tag :defaults, 'jquery.js', 'jquery.form.js'
+    = yield(:head)
+  %body
+    .container
+      #navigation
+        = link_to "Home", root_path 
+      #header
+        %h1 Betabrite
+        #navset
+          = navigation [:root]
+          = yield(:subnav)
+      #content
+        - flash.each do |name, msg|
+          = content_tag :div, msg, :id => "flash_#{name}"
+        = yield
+      #sidebar
+        .block
+          %h3= yield :title_sidebar
+          .content
+            %p= yield :sidebar
+      #extra
+      #footer
+        %p Copyright

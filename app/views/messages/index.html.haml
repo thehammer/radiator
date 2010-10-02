@@ -1,0 +1,27 @@
+.span-24
+  %h1 Listing messages
+  %table
+    %tr
+      %th ID
+      %th Node
+      %th Text
+      %th Color
+      %th Created
+      %th Modified
+      %th Last Displayed
+    - @messages.each do |message|
+      %tr
+        %td= message.id
+        %td= message.node
+        %td= message.text
+        %td= message.color
+        %td= message.created_at.strftime("%D")
+        %td= message.updated_at.strftime("%D")
+        - last_displayed_at = message.last_displayed_at.strftime("%D") if message.last_displayed_at
+        %td= last_displayed_at || "never"
+
+        %td= link_to 'Show', message
+        %td= link_to 'Edit', edit_message_path(message)
+        %td= link_to 'Destroy', message, :confirm => 'Are you sure?', :method => :delete
+  %br/
+  = link_to 'New Message', new_message_path

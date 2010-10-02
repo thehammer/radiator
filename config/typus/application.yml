@@ -1,0 +1,14 @@
+# Typus Models Configuration File
+#
+# Use the README file as a reference to customize settings.
+
+Message:
+  fields:
+    default: text, color, node, last_displayed_at
+    form: text, color, node, last_displayed_at
+  order_by: 
+  relationships: 
+  filters: 
+  search: 
+  application: radiator
+
