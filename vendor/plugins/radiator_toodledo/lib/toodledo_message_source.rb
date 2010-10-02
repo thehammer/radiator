@@ -15,7 +15,7 @@ module Radiator
       user_id = connection['user_id']
       password = connection['password']
       app_id = connection['app_id'] || 'ruby_app'      
-      logger = Logger.new("toodledo.log")
+      logger = Logger.new("log/toodledo.log")
       logger.level = Logger::ERROR
       
       @session = ::Toodledo::Session.new(user_id, password, logger, app_id)
@@ -25,10 +25,12 @@ module Radiator
     def update_messages  
       options = { :star => true, :folder => 'Action', :notcomp => true }
       tasks = @session.get_tasks(options)
-      tasks.each do |task|
-        truncated_title = task.title.slice(0, 60)
-        Message.create(:text => truncated_title)
-      end      
+      Message.transaction do
+        tasks.each do |task|
+          truncated_title = task.title.slice(0, 60)
+          Message.create(:text => truncated_title)
+        end        
+      end
     end
 
   end

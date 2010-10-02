@@ -1,24 +1,43 @@
 require 'rufus/scheduler'
-require 'betabrite/betabrite_writer'
-require 'betabrite/usb_betabrite'
+
+require_dependency 'betabrite/betabrite_writer'
+require_dependency 'betabrite/usb_betabrite'
+
+require_dependency 'message'
 
 #
 # This class, when called, will show the messages in the queue.
 #
 class BetabriteUpdater
   
+  def self.update_display_resolution
+    AppConfig.update_display
+  end
+  
+  def self.update_messages_resolution
+    AppConfig.update_display
+  end
+  
+  def self.message_sources
+    MESSAGE_SOURCES    
+  end
+  
   def self.start_updater
     scheduler = Rufus::Scheduler.start_new
 
     # Every 5 seconds, change the text.
-    scheduler.every '5s' do
-      update_display
+    scheduler.every update_display_resolution do
+      Message.transaction do        
+        update_display
+      end
     end    
 
     # Every minute, dump our existing messages and call for new ones.
-    scheduler.every "1m" do
-      clear_messages
-      update_messages
+    scheduler.every update_messages_resolution do
+      Message.transaction do
+        clear_messages
+        update_messages
+      end
     end
 
   end
@@ -28,8 +47,7 @@ class BetabriteUpdater
   end
   
   def self.update_messages
-    sources = MESSAGE_SOURCES
-    sources.each do |source|
+    message_sources.each do |source|
       source.update_messages
     end
   end
