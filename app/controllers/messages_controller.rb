@@ -83,6 +83,10 @@ class MessagesController < ApplicationController
   
   def clear
     Message.clear_messages
+    respond_to do |format|
+      format.html { redirect_to(messages_url) }
+      format.xml  { head :ok }
+    end
   end
   
 end
