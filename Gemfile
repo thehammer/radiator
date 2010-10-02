@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.0.0'
 
-gem 'sqlite3-ruby', :require => 'sqlite3'
+gem 'pg'
 
 # Basic template stuff
 gem 'haml', ">= 3.0.18"
@@ -16,3 +16,4 @@ gem "rufus-scheduler", :git => "git://github.com/jmettraux/rufus-scheduler.git"
 
 gem 'betabrite', :path => "vendor/betabrite"
 gem 'ruby-usb', :require => 'usb', :path => "vendor/ruby-usb"
+

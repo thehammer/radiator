@@ -9,7 +9,7 @@ class BetabriteWriter
         end.write!
       end
     rescue StandardError, Timeout::Error => e
-      puts "Error sending message to Betabrite, #{e}"
+      Rails.logger.error "Error sending message to Betabrite, #{e}"
     end
   end
 end

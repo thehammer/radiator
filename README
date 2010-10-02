@@ -9,11 +9,12 @@ Getting Started
 1. Before using Radiator for the first time, you'll need to have libusb installed.  Source can be found at http://libusb.sourceforge.net, along with instructions for building it on your platform.  Binary distributions can also be found for certain platforms.  (For Mac OS, see http://www.ellert.se/twain-sane/)
 
 WS: On Debian, type "sudo apt-get install libusb"
+WS: On MacOS, type "sudo port install libusb-legacy" (or libusb-compat?) (you will need MacPorts installed)
 
 2. With libusb installed, execute 'sudo script/install_usb' from the base directory of the Radiator application.  This will build and install the ruby-usb native library.
 
 WS: Does not appear to work.  You may need to go and add it manually.
-WS: You will also need to type "rake gems:install" to build all the libraries.  
+WS: You will also need to type "bundle install" to build all the libraries.  
 WS: If you have a dependency on Nokogiri, you will need "sudo apt-get install libxslt libxml2-dev"
 
 3. Launch the service with './radiator' from the base directory of the application.  It will use port 8374 by default.

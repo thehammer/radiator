@@ -19,7 +19,7 @@ class UsbBetabrite
         write handle, text_command_for(message)
       end
     rescue StandardError, Timeout::Error => e
-      puts "Error connecting to Betabrite, #{e}"
+      Rails.logger.error "Error connecting to Betabrite, #{e}"
     ensure
       release_usb_interface handle unless handle.nil?
     end

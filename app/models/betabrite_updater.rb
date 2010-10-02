@@ -8,6 +8,8 @@ require 'betabrite/usb_betabrite'
 class BetabriteUpdater
   
   def self.start_updater
+    Rails.logger.info "start_updater: "
+    
     scheduler = Rufus::Scheduler.start_new
 
     scheduler.every '5s' do
@@ -17,15 +19,14 @@ class BetabriteUpdater
   end
   
   def self.update_display
-    Message.transaction do
-      message = Message.get_next_message
-      return unless message
-      
-      BetabriteWriter.display(message.node, message.text, message.color)      
+    message = Message.get_next_message
+    Rails.logger.info "update_display: message = #{message.inspect}"
+    return unless message
+    
+    BetabriteWriter.display(message.node, message.text, message.color)      
 
-      message.last_displayed = Time.now
-      message.save!      
-    end    
+    message.last_displayed_at = Time.now
+    message.save!      
   end
   
 end
