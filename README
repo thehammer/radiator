@@ -6,24 +6,47 @@ Getting Started
 ===============
 0. In order for Radiator to do anything interesting, you'll need a Betabrite Prism USB LED sign.  Plug it in.
 
-1. Before using Radiator for the first time, you'll need to have libusb installed.  Source can be found at http://libusb.sourceforge.net, along with instructions for building it on your platform.  Binary distributions can also be found for certain platforms.  (For Mac OS, see http://www.ellert.se/twain-sane/)
 
-WS: On Debian, type "sudo apt-get install libusb"
-WS: On MacOS, type "sudo port install libusb-legacy" (or libusb-compat?) (you will need MacPorts installed)
+Install Everything
+====================
 
-2. With libusb installed, execute 'sudo script/install_usb' from the base directory of the Radiator application.  This will build and install the ruby-usb native library.
+Debian:
+  sudo apt-get install ruby
+  sudo apt-get install libopenssl-ruby
+  sudo apt-get install postgresql-server postgresql-client
+  sudo apt-get install libpq-dev
+  sudo apt-get install libusb-dev
+  Make sure you have Rubygems 1.3.7 installed (use the one from rubygems.org NOT the Debian one)
 
-WS: Does not appear to work.  You may need to go and add it manually.
-WS: You will also need to type "bundle install" to build all the libraries.  
-WS: If you have a dependency on Nokogiri, you will need "sudo apt-get install libxslt libxml2-dev"
+Mac:
+  Install MacPorts
+  sudo port install ruby (MacPorts Ruby is much better)
+  sudo port install postgresql
+  sudo port install libusb-legacy (compat?)
+  Make sure you have RubyGems 1.3.7 or later
 
-3. Launch the service with './radiator' from the base directory of the application.  It will use port 8374 by default.
+Set up the Database
+===================
 
-4. Start radiating.  You can test the service by going to http://localhost:8374/ and entering text.
+  createdb radiator_production
+  createuser radiator -P (use "radiator" as the password)
 
-DISABLED 5. Radiator includes a notifier builder_plugin for cruisecontrol.rb.  Just copy app/plugins/radiator_notifier.rb to the builder_plugins/installed directory of your cruisecontrol.rb installation, configure your projects as described in the notifier, and restart cruise.
+Setup Project
+===================
 
-WS: Moving this out for a more robust plugin mechanism, based off what Typo does.
+  sudo gem install bundler
+  bundle install 
+
+Run Migrations
+===================
+
+  sudo rake db:migrate RAILS_ENV=production
+
+Running It
+====================
+
+  sudo ./radiator  (need sudo access for the USB)
+  Go to http://localhost:8374/admin for the Typus interface.
 
 Device Compatibility
 ====================

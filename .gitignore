@@ -1,5 +1,8 @@
 *.tmproj
 
+public/stylesheets/compiled/**
+tmp/pids/**
+tmp/sass-cache/**
 **/*.o
 **/*.sqlite3
 .DS_Store
