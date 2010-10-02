@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 
   helper :all # include all helpers, all the time
 
-  # See ActionController::RequestForgeryProtection for details
-  # Uncomment the :secret if you're not using the cookie session store
-  protect_from_forgery # :secret => 'cb6f7334423121f5c8c294bbb50ba2e7'
+  protect_from_forgery
+  
+  
 end
