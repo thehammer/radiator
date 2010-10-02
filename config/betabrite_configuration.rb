@@ -2,8 +2,6 @@ require 'betabrite'
 require 'usb'
 require 'timeout'
 
-Rails.logger.debug "Initializing Betabrite..."
-
 # Override usb_interface method to make more compatible with OS X
 module BetaBrite
   class USB < Base
@@ -77,4 +75,4 @@ bb = BetaBrite::USB.new do |sign|
 end
 Timeout.timeout(10) { bb.write! }
 
-Rails.logger.debug "Initialization complete."
+puts "Initialization complete."

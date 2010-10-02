@@ -1,2 +1,2 @@
 #!/bin/sh
-exec rails server -e production --port 8374 $1
+exec ./script/rails server -e production --port 8374 $1

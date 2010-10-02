@@ -17,7 +17,7 @@ test:
 
 production:
   adapter: postgresql
-  database: radiator_prod
+  database: radiator_production
   username: radiator
   password: radiator
   host: localhost
