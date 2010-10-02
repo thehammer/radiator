@@ -8,8 +8,6 @@ require 'betabrite/usb_betabrite'
 class BetabriteUpdater
   
   def self.start_updater
-    Rails.logger.info "start_updater: "
-    
     scheduler = Rufus::Scheduler.start_new
 
     # Every 5 seconds, change the text.
@@ -18,7 +16,7 @@ class BetabriteUpdater
     end    
 
     # Every minute, dump our existing messages and call for new ones.
-    scheduler.every "10s" do
+    scheduler.every "1m" do
       clear_messages
       update_messages
     end
