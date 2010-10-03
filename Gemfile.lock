@@ -56,11 +56,17 @@ GEM
     cmdparse (2.0.2)
     compass (0.10.5)
       haml (>= 3.0.4)
+    daemons (1.1.0)
+    delayed_job (2.0.3)
+      daemons
     erubis (2.6.6)
       abstract (>= 1.0.0)
     haml (3.0.21)
     highline (1.5.1)
     i18n (0.4.1)
+    little-plugger (1.1.2)
+    logging (1.4.1)
+      little-plugger (>= 1.1.2)
     mail (2.2.6.1)
       activesupport (>= 2.3.6)
       mime-types
@@ -101,7 +107,9 @@ PLATFORMS
 DEPENDENCIES
   betabrite!
   compass (>= 0.10.5)
+  delayed_job
   haml (>= 3.0.18)
+  logging
   pg
   rails (= 3.0.0)
   ruby-usb!

@@ -11,11 +11,12 @@ begin
   toodledo_config = YAML.load(IO::read(config_file))
   
   Toodledo.set_config(toodledo_config)  
-  
-  toodledo_message_source = Radiator::ToodledoMessageSource.new
-  MESSAGE_SOURCES << (toodledo_message_source)
+
+  toodledo_message_source = RadiatorToodledo::ToodledoMessageSource.new
+  AppConfig.message_sources.push(toodledo_message_source)
   
 rescue LoadError => e
+  puts e.inspect
   Rails.logger.error e.inspect
 end
 

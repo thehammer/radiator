@@ -2,11 +2,6 @@ Radiator
 ========
 Radiator is a Ruby on Rails application that exposes a web service for radiating information to devices like the Betabrite Prism.
 
-Getting Started
-===============
-0. In order for Radiator to do anything interesting, you'll need a Betabrite Prism USB LED sign.  Plug it in.
-
-
 Install Everything
 ====================
 
@@ -40,13 +35,17 @@ Setup Project
 Run Migrations
 ===================
 
-  sudo rake db:migrate 
+  sudo RAILS_ENV=production rake db:migrate 
 
 Running It
 ====================
 
-  sudo ./radiator  (need sudo access for the USB)
+  # Start up the server (creates jobs)
+  RAILS_ENV=production script/rails server
   Go to http://localhost:3000/admin for the Typus interface.
+
+  # To run the workers that run on the jobs
+  sudo RAILS_ENV=production rake jobs:work
 
 Extending It
 ====================
@@ -55,7 +54,7 @@ The core of Radiator is the messages table.  Anything in the messages table gets
 
 Messages get created by message sources.  Currently, there is only one message source, which queries Toodledo (an online todo service) and creates new messages from it.  However, Radiator does not care where messages come from and you can add your own messages in Typus.
 
-The BetaBriteUpdater class is responsible for talking to the USB display and getting new messages.  This class uses rufus-scheduler to update the display (which is done every 5 seconds) and call the datasources for new messages (every minute).  The BetabriteUpdater will clear the table every time it updates for new messages, but it does not "blank" the Betabrite display.  This means that if there are no new messages, the last displayed message just keeps displaying until a new one does appear.
+The BetaBriteUpdater class is responsible for talking to the USB display and getting new messages.  This class uses rufus-scheduler to update the display (which is done every 5 seconds) and call the datasources for new messages (every minute).  The BetabriteUpdater will clear the table every time it updates for new messages, but it does not "blank" the Betabrite display.  This means that if there are no new messages, the last displayed message just keeps displaying until a new one does appear.  It then creates jobs that are picked up by the worker process running in the background -- this prevents long running processes from locking up the web server.
 
 There is a scaffold for messages that can be used as a REST API, so /messages.xml will give you what you expect.
 
