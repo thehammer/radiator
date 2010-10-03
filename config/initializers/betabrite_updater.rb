@@ -1,1 +1,0 @@
-BetabriteUpdater.start_updater

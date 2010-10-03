@@ -1,0 +1,9 @@
+common:
+  update_display: "5s"
+  update_messages: "1m"
+
+production:
+
+development:
+
+

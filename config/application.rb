@@ -2,6 +2,7 @@ require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
 
+require File.expand_path('../app_config', __FILE__)
 require File.expand_path('../betabrite_configuration', __FILE__) if Rails.env == 'production'
 
 # If you have a Gemfile, require the gems listed there, including any gems
@@ -18,6 +19,12 @@ module Radiator
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]    
-    
+
+    config.autoload_paths << 'lib/betabrite'
+
+    config.after_initialize do 
+      BetabriteUpdater.start_updater
+    end
   end
 end
+
