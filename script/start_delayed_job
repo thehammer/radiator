@@ -1,0 +1,2 @@
+#!/bin/sh
+nohup sudo RAILS_ENV=production rake jobs:work > log/delayed_jobs.log
