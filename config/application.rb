@@ -15,7 +15,7 @@ root_logger.add_appenders(
   Logging.appenders.stdout,
   Logging.appenders.rolling_file("log/#{Rails.env}.log")
 )
-root_logger.level = :debug
+root_logger.level = :info
 Rails.logger = root_logger
 
 # Thanks to http://twitter.com/#!/svenfuchs/status/12001807009
