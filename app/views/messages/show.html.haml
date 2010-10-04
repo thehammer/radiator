@@ -15,11 +15,11 @@
     = @message.color
   .element
     Created:
-    = @message.created_at.strftime("%D")
+    = @message.created_at
   .element
     Updated:
-    = @message.updated_at.strftime("%D")
-  - last_displayed_at = @message.last_displayed_at.strftime("%D") if @message.last_displayed_at
+    = @message.updated_at
+  - last_displayed_at = @message.last_displayed_at if @message.last_displayed_at
   .element
     Last Displayed
     = last_displayed_at || "never"

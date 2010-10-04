@@ -15,9 +15,9 @@
         %td= message.node
         %td= message.text
         %td= message.color
-        %td= message.created_at.strftime("%D")
-        %td= message.updated_at.strftime("%D")
-        - last_displayed_at = message.last_displayed_at.strftime("%D") if message.last_displayed_at
+        %td= message.created_at.strftime
+        %td= message.updated_at.strftime
+        - last_displayed_at = message.last_displayed_at if message.last_displayed_at
         %td= last_displayed_at || "never"
 
         %td= link_to 'Show', message

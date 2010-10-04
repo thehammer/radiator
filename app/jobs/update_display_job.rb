@@ -11,12 +11,11 @@ class UpdateDisplayJob < Struct.new(:source)
       Message.transaction do        
         message = Message.get_next_message
         return unless message
-        logger.info "Showing new message #{message.text}"
-
-        BetabriteWriter.display(message.node, message.text, message.color)      
-
+        logger.info "Showing new message #{message.id} (#{message.last_displayed_at}) = #{message.text}"
         message.last_displayed_at = Time.now
         message.save!      
+
+        BetabriteWriter.display(message.node, message.text, message.color)      
       end
     end
   end
