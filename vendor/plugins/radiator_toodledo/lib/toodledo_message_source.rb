@@ -1,6 +1,5 @@
 require 'toodledo'
 require 'logging'
-require 'singleton'
 
 #
 # This task dumps messages that can be read by radiator later.
@@ -28,22 +27,28 @@ module RadiatorToodledo
       @logger
     end
     
+    def get_displayable_tasks
+      today = Date.today.strftime("%Y-%m-%d")
+
+      starred_tasks = @session.get_tasks({ :star => true, :notcomp => true })
+      overdue_tasks = @session.get_tasks({ :before => now, :notcomp => true })
+      all_tasks = starred_tasks + overdue_tasks
+      all_tasks
+    end
+    
     def update_messages
       logger.info "Updating messages from toodledo:"
-      options = {
-        :star => true, 
-        :folder => 'Action',       
-        :notcomp => true
-      }
-      tasks = @session.get_tasks(options)
+    
+      displayable_tasks = get_displayable_tasks
       Message.transaction do
-        tasks.each do |task|
+        displayable_tasks.each do |task|
           truncated_title = task.title.slice(0, 60)
           logger.info "Pulling task: #{truncated_title}"
           
           Message.create(:text => truncated_title)
         end        
       end
+      
       logger.info "Finished updating messages"
     end
 
