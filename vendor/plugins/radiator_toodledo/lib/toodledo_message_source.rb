@@ -31,7 +31,7 @@ module RadiatorToodledo
       today = Date.today.strftime("%Y-%m-%d")
 
       starred_tasks = @session.get_tasks({ :star => true, :notcomp => true })
-      overdue_tasks = @session.get_tasks({ :before => now, :notcomp => true })
+      overdue_tasks = @session.get_tasks({ :before => today, :notcomp => true })
       all_tasks = starred_tasks + overdue_tasks
       all_tasks
     end
