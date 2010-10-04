@@ -15,8 +15,8 @@
         %td= message.node
         %td= message.text
         %td= message.color
-        %td= message.created_at.strftime
-        %td= message.updated_at.strftime
+        %td= message.created_at
+        %td= message.updated_at
         - last_displayed_at = message.last_displayed_at if message.last_displayed_at
         %td= last_displayed_at || "never"
 
