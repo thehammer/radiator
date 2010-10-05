@@ -17,7 +17,7 @@ module RadiatorToodledo
       password = connection['password']
       app_id = connection['app_id'] || 'ruby_app'      
       @logger = Logging::Logger[self]
-      @logger.level = :error
+      @logger.level = :debug
       
       @session = ::Toodledo::Session.new(user_id, password, @logger, app_id)
       @session.connect(base_url, proxy)      
