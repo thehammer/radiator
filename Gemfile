@@ -22,5 +22,5 @@ gem 'ruby-usb', :require => 'usb', :path => "vendor/ruby-usb"
 
 # Used for the toodledo plugin
 gem 'logging'
-gem 'toodledo', '>=1.3.2'
+gem 'toodledo', :git => "git://github.com/wsargent/wsargent.git"
 
