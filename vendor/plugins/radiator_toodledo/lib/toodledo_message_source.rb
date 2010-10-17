@@ -25,8 +25,10 @@ module RadiatorToodledo
       user_id = connection['user_id']
       password = connection['password']
       app_id = connection['app_id'] || 'ruby_app'      
-    
-      session = ::Toodledo::Session.new(user_id, password, @logger, app_id)   
+      
+      session = ::Toodledo::Session.new(user_id, password, @logger, app_id)
+      session.connect(base_url, proxy)
+      session
     end
     
     def get_displayable_tasks
