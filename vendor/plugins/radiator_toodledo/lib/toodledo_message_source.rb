@@ -8,6 +8,15 @@ module RadiatorToodledo
   class ToodledoMessageSource
     
     def initialize
+      @logger = Logging::Logger[self]
+      @logger.level = :info      
+    end
+    
+    def logger
+      @logger
+    end
+
+    def get_session
       config = ::Toodledo.get_config()
       proxy = config['proxy']
 
@@ -16,22 +25,16 @@ module RadiatorToodledo
       user_id = connection['user_id']
       password = connection['password']
       app_id = connection['app_id'] || 'ruby_app'      
-      @logger = Logging::Logger[self]
-      @logger.level = :error
-      
-      @session = ::Toodledo::Session.new(user_id, password, @logger, app_id)
-      @session.connect(base_url, proxy)      
-    end
     
-    def logger
-      @logger
+      session = ::Toodledo::Session.new(user_id, password, @logger, app_id)   
     end
     
     def get_displayable_tasks
       today = Date.today.strftime("%Y-%m-%d")
 
-      starred_tasks = @session.get_tasks({ :star => true, :notcomp => true })
-      overdue_tasks = @session.get_tasks({ :before => today, :notcomp => true })
+      session = get_session
+      starred_tasks = session.get_tasks({ :star => true, :notcomp => true })
+      overdue_tasks = session.get_tasks({ :before => today, :notcomp => true })
       all_tasks = starred_tasks + overdue_tasks
       all_tasks
     end
