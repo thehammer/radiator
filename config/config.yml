@@ -1,6 +1,6 @@
 common:
   update_display: "10s"
-  update_messages: "1m"
+  update_messages: "5m"
   
 production:
 
