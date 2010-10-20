@@ -10,7 +10,7 @@ class Message < ActiveRecord::Base
   # Gets the next message, starting with the ones that haven't been displayed in a while.
   #
   def self.get_next_message
-    messages = Message.first(:order => 'last_displayed_at asc')    
+    messages = Message.all(:order => 'last_displayed_at asc')    
     return nil if messages.empty?
     messages.first 
   end
