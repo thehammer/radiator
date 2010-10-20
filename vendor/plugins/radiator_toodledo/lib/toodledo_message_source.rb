@@ -9,10 +9,12 @@ module RadiatorToodledo
     
     ONE_HOUR_IN_SECONDS = (60 * 60)
     
-    def initialize
+    def initialize(session_class = Toodledo::Session, messenger = Message)
       @logger = Logging::Logger[self]
       @logger.level = :info
       @failure_time = nil
+      @session_factory = session_class
+      @messenger = messenger
     end
     
     def logger
@@ -29,7 +31,7 @@ module RadiatorToodledo
       password = connection['password']
       app_id = "radiator"      
       
-      session = ::Toodledo::Session.new(user_id, password, @logger, app_id)
+      session = @session_factory.new(user_id, password, @logger, app_id)
       session.connect(base_url, proxy)
       session
     end
@@ -47,9 +49,13 @@ module RadiatorToodledo
     def update_messages
       logger.info "Updating messages from toodledo:"
     
-      if (Time.now - @failure_time).to_i < (ONE_HOUR_IN_SECONDS + 60)
-        logger.info "Returning because of excessive token requests"
-        return
+      if @failure_time 
+        if (Time.now - @failure_time).to_i < (ONE_HOUR_IN_SECONDS + 60)
+          logger.info "Returning because of excessive token requests"
+          return
+        else
+          @failure_time = nil        
+        end
       end
     
       begin
@@ -59,19 +65,19 @@ module RadiatorToodledo
             truncated_title = task.title.slice(0, 60)
             logger.info "Pulling task: #{truncated_title}"
 
-            Message.create(:text => truncated_title)
+            @messenger.create(:text => truncated_title)
           end        
         end
       rescue Toodledo::InvalidKeyError => e
-        Message.create(:text => e.message)
+        @messenger.create(:text => e.message)
       rescue Toodledo::ExcessiveTokenRequestsError => e
         unless @failure_time
           @failure_time = Time.now
         end
         message = "Excessive token requests: failed at #{@failure_time}"
-        Message.create(:text => message)
+        @messenger.create(:text => message)
       rescue Exception => e
-        Message.create(:text => e.message)
+        @messenger.create(:text => e.message)
       end
     
       logger.info "Finished updating messages"
