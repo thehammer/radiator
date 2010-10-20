@@ -1,14 +1,23 @@
 GIT
   remote: git://github.com/fesplugas/typus.git
-  revision: 285241f7e3b6ec1dedde2a8d0c36672809e523b0
+  revision: 71a32052cd37ddc6f9a0ab09feb436a3b0d3be1f
   specs:
-    typus (1.0.0.pre8)
+    typus (3.0.1)
+      will_paginate (~> 3.0.pre2)
 
 GIT
   remote: git://github.com/jmettraux/rufus-scheduler.git
   revision: bc207bd9f6f3bd0f5c0ca85ff73621d8baf0c02b
   specs:
     rufus-scheduler (2.0.6)
+
+GIT
+  remote: git://github.com/wsargent/toodledo.git
+  revision: caeff281c89fe09108eaafaeffa75b874642b195
+  specs:
+    toodledo (1.3.6)
+      cmdparse
+      highline
 
 PATH
   remote: vendor/betabrite
@@ -61,13 +70,13 @@ GEM
       daemons
     erubis (2.6.6)
       abstract (>= 1.0.0)
-    haml (3.0.21)
-    highline (1.5.1)
+    haml (3.0.22)
+    highline (1.6.1)
     i18n (0.4.1)
     little-plugger (1.1.2)
-    logging (1.4.1)
+    logging (1.4.3)
       little-plugger (>= 1.1.2)
-    mail (2.2.6.1)
+    mail (2.2.7)
       activesupport (>= 2.3.6)
       mime-types
       treetop (>= 1.4.5)
@@ -77,7 +86,7 @@ GEM
     rack (1.2.1)
     rack-mount (0.6.13)
       rack (>= 1.0.0)
-    rack-test (0.5.4)
+    rack-test (0.5.6)
       rack (>= 1.0)
     rails (3.0.0)
       actionmailer (= 3.0.0)
@@ -93,13 +102,11 @@ GEM
       rake (>= 0.8.4)
       thor (~> 0.14.0)
     rake (0.8.7)
-    thor (0.14.2)
-    toodledo (1.3.2)
-      cmdparse
-      highline
-    treetop (1.4.5)
+    thor (0.14.3)
+    treetop (1.4.8)
       polyglot (>= 0.3.1)
     tzinfo (0.3.23)
+    will_paginate (3.0.pre2)
 
 PLATFORMS
   ruby
@@ -114,5 +121,5 @@ DEPENDENCIES
   rails (= 3.0.0)
   ruby-usb!
   rufus-scheduler!
-  toodledo (>= 1.3.2)
+  toodledo!
   typus!
