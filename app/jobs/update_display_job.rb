@@ -10,13 +10,22 @@ class UpdateDisplayJob < Struct.new(:source)
     Message.benchmark("Update Display Job") do
       Message.transaction do        
         message = Message.get_next_message
-        return unless message
-        logger.info "Showing new message #{message.id} (#{message.last_displayed_at}) = #{message.text}"
-        message.last_displayed_at = Time.now
-        message.save!      
-
-        BetabriteWriter.display(message.node, message.text, message.color)      
+        
+        if message        
+          logger.info "Showing new message #{message.id} (#{message.last_displayed_at}) = #{message.text}"
+          message.last_displayed_at = Time.now
+          message.save!      
+          display(message.node, message.text, message.color)
+        else
+          logger.info "Showing default message"
+          display(Message.default_node, Message.default_message, Message.default_color)          
+        end        
       end
-    end
+    end        
   end
+  
+  def display(node, text, color)    
+    BetabriteWriter.display(node, text, color)
+  end
+  
 end

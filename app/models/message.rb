@@ -21,4 +21,16 @@ class Message < ActiveRecord::Base
     delete_all
   end
   
+  def self.default_color
+    "0000FF"
+  end
+  
+  def self.default_node
+    "1"
+  end
+  
+  def self.default_message
+    DateTime.now.strftime("%m/%d/%y %H:%M:%S")
+  end
+  
 end
