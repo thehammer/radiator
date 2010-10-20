@@ -11,7 +11,9 @@ class Message < ActiveRecord::Base
   #
   def self.get_next_message
     uncached do      
-      find(:first, :order => 'last_displayed_at desc')
+      messages = find(:all, :order => 'last_displayed_at desc')
+      return nil if messages.empty?
+      messages.first
     end
   end
   
