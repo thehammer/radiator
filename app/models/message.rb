@@ -1,6 +1,6 @@
 class Message < ActiveRecord::Base
   
-  default_scope :order => 'last_displayed_at asc'
+  default_scope :order => 'last_displayed_at desc'
   
   validates_presence_of :text
   validates_presence_of :color
@@ -10,9 +10,9 @@ class Message < ActiveRecord::Base
   # Gets the next message, starting with the ones that haven't been displayed in a while.
   #
   def self.get_next_message
-    messages = Message.all(:order => 'last_displayed_at asc')    
-    return nil if messages.empty?
-    messages.first 
+    uncached do      
+      find(:first, :order => 'last_displayed_at desc')
+    end
   end
   
   def self.clear_messages
