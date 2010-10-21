@@ -37,12 +37,17 @@ module RadiatorToodledo
     end
     
     def get_displayable_tasks
-      today = Date.today.strftime("%Y-%m-%d")
+      tomorrow = (Date.today + 1).strftime("%Y-%m-%d")
 
       session = get_session      
+      
+      # XXX the next step here is to expose the query mechanism through to the UI, so we
+      # can tweak what tasks should be displayed at runtime.
       starred_tasks = session.get_tasks({ :star => true, :notcomp => true })
-      overdue_tasks = session.get_tasks({ :before => today, :notcomp => true })
-      all_tasks = starred_tasks + overdue_tasks
+      overdue_tasks = session.get_tasks({ :before => tomorrow, :notcomp => true })
+      starting_tasks = session.get_tasks({ :startbefore => tomorrow, :notcomp => true })
+
+      all_tasks = starred_tasks + overdue_tasks + starting_tasks
       all_tasks
     end
     
