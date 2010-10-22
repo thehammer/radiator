@@ -12,7 +12,7 @@ class UpdateDisplayJob < Struct.new(:source)
         message = Message.get_next_message
         
         if message        
-          logger.info "Showing new message #{message.id} (#{message.last_displayed_at}) = #{message.text}"
+          logger.info "Showing new message #{message.id} (last_displayed_at = #{message.last_displayed_at}) = #{message.text}"
           message.last_displayed_at = Time.now
           message.save!      
           display(message.node, message.text, message.color)
