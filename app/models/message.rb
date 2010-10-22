@@ -10,7 +10,17 @@ class Message < ActiveRecord::Base
   # Gets the next message, starting with the ones that haven't been displayed in a while.
   #
   def self.get_next_message
-    uncached do      
+    
+    # Return a never displayed message if there isn't one.
+    uncached do
+      message = find(:first, :conditions => { :last_displayed_at => nil })
+      return message if message
+    end
+
+    # Otherwise, display the message that has been displayed least.  We have to do it this
+    # way rather than combining it into a single query because the values will always get
+    # sorted BEFORE null rather than after.
+    uncached do
       messages = find(:all, :order => 'last_displayed_at asc')
       return nil if messages.empty?
       messages.first
